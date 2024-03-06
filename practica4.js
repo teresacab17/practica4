@@ -35,7 +35,15 @@ exports.min_temp = (cities) =>{
 }
 
 exports.average_temp = (cities) => {
-
+    let acumulador = 0;
+    let numCiudades= cities.length;
+    
+    cities.forEach((city) => {
+        let temperatura = city.main.temp;
+        acumulador += temperatura;
+    });
+    return acumlador/ numCiudades;
+        
 }
 
 exports.warmer_average_temp =(cities) => {
