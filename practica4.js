@@ -2,13 +2,16 @@
    
     return valor;
 }*/
+const fs = require('fs')
+const {readFile} = require('fs/promises');
 
-exports.load = (citiesFilename) => {
-   
+exports.load = async filename => {
+    const buffer = await readFile(filename);
+    return JSON.parse(buffer);
 }
 
 exports.max_temp = (cities) => {
-
+    
 }
 
 exports.min_temp = (cities) =>{
