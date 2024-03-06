@@ -11,11 +11,27 @@ exports.load = async filename => {
 }
 
 exports.max_temp = (cities) => {
-    
+    let maxTemp = cities[0].main.temp;
+
+    cities.forEach((city) => {
+        let temperatura = city.main.temp;
+        if (temperatura > maxTemp){
+            maxTemp = temperatura;
+        }
+    });
+    return maxTemp;
 }
 
 exports.min_temp = (cities) =>{
+    let minTemp = cities[0].main.temp;
 
+    cities.forEach((city) => {
+        let temperatura = city.main.temp;
+        if (temperatura < minTemp){
+            minTemp = temperatura;
+        }
+    });
+    return minTemp;
 }
 
 exports.average_temp = (cities) => {
