@@ -43,18 +43,42 @@ exports.average_temp = (cities) => {
         acumulador += temperatura;
     });
     return acumlador/ numCiudades;
-        
 }
 
 exports.warmer_average_temp =(cities) => {
-
+    let tempMedia = this.average_temp(cities);
+    let ciudadesMasCalientes = cities.filter((city) => {
+        let temperatura = city.main.temp;
+        return temperatura > tempMedia;
+    });
+    let nombreCiudad = ciudadesMasCalientes.map((city) => city.name);
+    return nombreCiudad;
 }
 
 exports.max_north = (cities) => {
+    let ciudadAlNorte = cities[0];
 
+    cities.forEach((city) => {
+        let latitud = city.coord.lat;
+        if(latitud> ciudadAlNorte.coord.lat){
+            ciudadAlNorte = city;
+        }
+    });
+
+    return ciudadAlNorte;
 }
 
 exports.max_south = (cities) => {
+    let ciudadAlSur = cities[0];
+
+    cities.forEach((city) => {
+        let latitud = city.coord.lat;
+        if(latitud< ciudadAlSur.coord.lat){
+            ciudadAlSur = city;
+        }
+    });
+
+    return ciudadAlSur;
 
 }
 
