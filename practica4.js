@@ -84,25 +84,36 @@ exports.max_south = (cities) => {
 
 exports.gravity_center = (cities) => {
     let suma = 0;
-
     let longitud = cities.reduce((longitud_acum, city) => {
         return longitud_acum += city.coord.lon;
     }, suma);
-};
 
-let latitud = cities.reduce((latitudAcum, city) => {
-    return latitudAcum += city.coord.lat;
-}, suma);
+    let latitud = cities.reduce((latitudAcum, city) => {
+        return latitudAcum += city.coord.lat;
+    }, suma);
 
-let longitudMedia = longitud/cities.length;
-let LatitudMedia = latitud/cities.length;
+    let longitudMedia = longitud/cities.length;
+    let LatitudMedia = latitud/cities.length;
 
-return{
-    lond : longitudMedia,
-    lat : LatitudMedia
-};
+    return{
+        lond : longitudMedia,
+        lat : LatitudMedia
+    };
+}
 
 exports.closest_GC = (cities) => {
+    let distaciaMinima = getDifereciaConMedia(cities, cities[0]);
+    let nombreCiudad = "";
 
-}
+    cities.forEach((city) => {
+        let distance = getDifereciaConMedia(cities, city);
+        if (distance < distaciaMinima){
+            distanciaMinima = distance;
+            nombreCiudad = city.name;
+        }
+    });
+    return nombreCiudad;
+    }
+
+
 
